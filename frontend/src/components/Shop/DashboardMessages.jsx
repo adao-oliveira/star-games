@@ -13,7 +13,7 @@ const ENDPOINT = "https://socket-ecommerce-tu68.onrender.com/";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const DashboardMessages = () => {
-  const { seller,isLoading } = useSelector((state) => state.seller);
+  const { seller, isLoading } = useSelector((state) => state.seller);
   const [conversations, setConversations] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [currentChat, setCurrentChat] = useState();
@@ -210,7 +210,7 @@ const DashboardMessages = () => {
       {!open && (
         <>
           <h1 className="text-center text-[30px] py-3 font-Poppins">
-            All Messages
+            Todas as mensagens
           </h1>
           {/* All messages list */}
           {conversations &&
@@ -287,9 +287,8 @@ const MessageList = ({
 
   return (
     <div
-      className={`w-full flex p-3 px-3 ${
-        active === index ? "bg-[#00000010]" : "bg-transparent"
-      }  cursor-pointer`}
+      className={`w-full flex p-3 px-3 ${active === index ? "bg-[#00000010]" : "bg-transparent"
+        }  cursor-pointer`}
       onClick={(e) =>
         setActive(index) ||
         handleClick(data._id) ||
@@ -314,7 +313,7 @@ const MessageList = ({
         <h1 className="text-[18px]">{user?.name}</h1>
         <p className="text-[16px] text-[#000c]">
           {!isLoading && data?.lastMessageId !== user?._id
-            ? "You:"
+            ? "Você:"
             : user?.name.split(" ")[0] + ": "}{" "}
           {data?.lastMessage}
         </p>
@@ -347,7 +346,7 @@ const SellerInbox = ({
           />
           <div className="pl-3">
             <h1 className="text-[18px] font-[600]">{userData?.name}</h1>
-            <h1>{activeStatus ? "Active Now" : ""}</h1>
+            <h1>{activeStatus ? "Ativo agora" : ""}</h1>
           </div>
         </div>
         <AiOutlineArrowRight
@@ -363,9 +362,8 @@ const SellerInbox = ({
           messages.map((item, index) => {
             return (
               <div
-                className={`flex w-full my-2 ${
-                  item.sender === sellerId ? "justify-end" : "justify-start"
-                }`}
+                className={`flex w-full my-2 ${item.sender === sellerId ? "justify-end" : "justify-start"
+                  }`}
                 ref={scrollRef}
               >
                 {item.sender !== sellerId && (
@@ -384,9 +382,8 @@ const SellerInbox = ({
                 {item.text !== "" && (
                   <div>
                     <div
-                      className={`w-max p-2 rounded ${
-                        item.sender === sellerId ? "bg-[#000]" : "bg-[#38c776]"
-                      } text-[#fff] h-min`}
+                      className={`w-max p-2 rounded ${item.sender === sellerId ? "bg-[#000]" : "bg-[#38c776]"
+                        } text-[#fff] h-min`}
                     >
                       <p>{item.text}</p>
                     </div>
@@ -423,7 +420,7 @@ const SellerInbox = ({
           <input
             type="text"
             required
-            placeholder="Enter your message..."
+            placeholder="Digite sua mensagem..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             className={`${styles.input}`}

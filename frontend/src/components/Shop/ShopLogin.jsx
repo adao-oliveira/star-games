@@ -25,9 +25,9 @@ const ShopLogin = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        toast.success("Login Success!");
+        toast.success("Acesso com sucesso!");
         navigate("/dashboard");
-        window.location.reload(true); 
+        window.location.reload(true);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -38,7 +38,7 @@ const ShopLogin = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Login to your shop
+          Acesse sua loja
         </h2>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -49,7 +49,7 @@ const ShopLogin = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Email address
+                Endereço de e-mail
               </label>
               <div className="mt-1">
                 <input
@@ -68,7 +68,7 @@ const ShopLogin = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Password
+                Senha
               </label>
               <div className="mt-1 relative">
                 <input
@@ -107,7 +107,7 @@ const ShopLogin = () => {
                   htmlFor="remember-me"
                   className="ml-2 block text-sm text-gray-900"
                 >
-                  Remember me
+                  Lembre de mim
                 </label>
               </div>
               <div className="text-sm">
@@ -115,7 +115,7 @@ const ShopLogin = () => {
                   href=".forgot-password"
                   className="font-medium text-blue-600 hover:text-blue-500"
                 >
-                  Forgot your password?
+                  Esqueceu sua senha?
                 </a>
               </div>
             </div>
@@ -124,11 +124,11 @@ const ShopLogin = () => {
                 type="submit"
                 className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600  hover:bg-blue-700"
               >
-                Submit
+                Entrar
               </button>
             </div>
             <div className={`${styles.noramlFlex} w-full`}>
-              <h4>Not have any account?</h4>
+              <h4>Não tem nenhuma conta?</h4>
               <Link to="/shop-create" className="text-blue-600 pl-2">
                 Inscrever-se
               </Link>

@@ -18,17 +18,17 @@ const Hero = () => {
           O que você procura na <br /> Star Gamers tem
         </h1>
         <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000ba]">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,
-          assumenda? Quisquam itaque <br /> exercitationem labore vel, dolore
-          quidem asperiores, laudantium temporibus soluta optio consequatur{" "}
-          <br /> aliquam deserunt officia. Dolorum saepe nulla provident.
+          Bem-vindo à nossa loja para gamers, onde você encontra tudo para elevar sua experiência de jogo.
+          Oferecemos periféricos de alto desempenho, os últimos lançamentos de jogos e acessórios inspirados
+          nos universos mais adorados.{" "}
+          <br /> Torne sua jogatina ainda mais incrível conosco!
         </p>
         <Link to="/products" className="inline-block">
-            <div className={`${styles.button} mt-5`}>
-                 <span className="text-[#fff] font-[Poppins] text-[18px]">
-                 Compre agora
-                 </span>
-            </div>
+          <div className={`${styles.button} mt-5`}>
+            <span className="text-[#fff] font-[Poppins] text-[18px]">
+              Compre agora
+            </span>
+          </div>
         </Link>
       </div>
     </div>

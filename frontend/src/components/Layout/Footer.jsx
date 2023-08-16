@@ -18,8 +18,7 @@ const Footer = () => {
       <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-blue-600 py-7">
         <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
           <span className="text-[#fff]">Se inscreva</span> para obter notícias{" "}
-          <br />
-          e ofertas
+          <br />e ofertas
         </h1>
         <div>
           <input
@@ -30,7 +29,7 @@ const Footer = () => {
                 sm:w-72 w-full sm:mr-5 mr-1 lg:mb-0 mb-4 py-2.5 rounded px-2 focus:outline-none"
           />
           <button className="bg-[#fff] hover:bg-[#111]-500 duration-300 px-5 py-2.5 rounded-md text-[#111] md:w-auto w-full">
-          Enviar
+            Enviar
           </button>
         </div>
       </div>
@@ -41,9 +40,12 @@ const Footer = () => {
             alt=""
             style={{ filter: "brightness(0) invert(1)" }}
           /> */}
-          <h1 style={{fontSize:'25px'}}>Star Gamers</h1>
+          <h1 style={{ fontSize: "25px" }}>Star Gamers</h1>
           <br />
-          <p>A loja ideal para Gamers que procuram aprimorar sua experiência com acessórios e variedades de alta qualidade.</p>
+          <p>
+            A loja ideal para Gamers que procuram aprimorar sua experiência com
+            acessórios e variedades de alta qualidade.
+          </p>
           <div className="flex items-center mt-[15px]">
             <AiFillFacebook size={25} className="cursor-pointer" />
             <AiOutlineTwitter
@@ -63,7 +65,7 @@ const Footer = () => {
 
         <ul className="text-center sm:text-start">
           <h1 className="mb-1 font-semibold">Empresa</h1>
-          {footerProductLinks.map((link,index) => (
+          {footerProductLinks.map((link, index) => (
             <li key={index}>
               <Link
                 className="text-gray-400 hover:text-teal-400 duration-300
@@ -78,7 +80,7 @@ const Footer = () => {
 
         <ul className="text-center sm:text-start">
           <h1 className="mb-1 font-semibold">Shop</h1>
-          {footercompanyLinks.map((link,index) => (
+          {footercompanyLinks.map((link, index) => (
             <li key={index}>
               <Link
                 className="text-gray-400 hover:text-teal-400 duration-300
@@ -93,7 +95,7 @@ const Footer = () => {
 
         <ul className="text-center sm:text-start">
           <h1 className="mb-1 font-semibold">Suporte</h1>
-          {footerSupportLinks.map((link,index) => (
+          {footerSupportLinks.map((link, index) => (
             <li key={index}>
               <Link
                 className="text-gray-400 hover:text-teal-400 duration-300

@@ -5,7 +5,7 @@ const express = require("express");
 const { isSeller, isAuthenticated } = require("../middleware/auth");
 const router = express.Router();
 
-// create a new conversation
+// criar uma nova conversa
 router.post(
   "/create-new-conversation",
   catchAsyncErrors(async (req, res, next) => {
@@ -37,7 +37,7 @@ router.post(
   })
 );
 
-// get seller conversations
+// obter conversas do vendedor
 router.get(
   "/get-all-conversation-seller/:id",
   isSeller,
@@ -60,7 +60,7 @@ router.get(
 );
 
 
-// get user conversations
+// obter conversas do usuário
 router.get(
   "/get-all-conversation-user/:id",
   isAuthenticated,
@@ -82,7 +82,7 @@ router.get(
   })
 );
 
-// update the last message
+// atualizar a última mensagem
 router.put(
   "/update-last-message/:id",
   catchAsyncErrors(async (req, res, next) => {

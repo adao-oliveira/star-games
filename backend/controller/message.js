@@ -5,7 +5,7 @@ const express = require("express");
 const cloudinary = require("cloudinary");
 const router = express.Router();
 
-// create new message
+// criar nova mensagem
 router.post(
   "/create-new-message",
   catchAsyncErrors(async (req, res, next) => {
@@ -45,7 +45,7 @@ router.post(
   })
 );
 
-// get all messages with conversation id
+// obter todas as mensagens com id de conversa
 router.get(
   "/get-all-messages/:id",
   catchAsyncErrors(async (req, res, next) => {

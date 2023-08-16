@@ -5,16 +5,16 @@ const jwt = require("jsonwebtoken");
 const shopSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Please enter your shop name!"],
+    required: [true, "Digite o nome da sua loja!"],
   },
   email: {
     type: String,
-    required: [true, "Please enter your shop email address"],
+    required: [true, "Insira o endereço de e-mail da sua loja"],
   },
   password: {
     type: String,
-    required: [true, "Please enter your password"],
-    minLength: [6, "Password should be greater than 6 characters"],
+    required: [true, "Por favor, insira sua senha"],
+    minLength: [6, "A senha deve ter mais de 6 caracteres"],
     select: false,
   },
   description: {
@@ -61,7 +61,7 @@ const shopSchema = new mongoose.Schema({
       },
       status: {
         type: String,
-        default: "Processing",
+        default: "Em processamento",
       },
       createdAt: {
         type: Date,
@@ -80,7 +80,7 @@ const shopSchema = new mongoose.Schema({
   resetPasswordTime: Date,
 });
 
-// Hash password
+// senha hash
 shopSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -95,7 +95,7 @@ shopSchema.methods.getJwtToken = function () {
   });
 };
 
-// comapre password
+// comaparar senha
 shopSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

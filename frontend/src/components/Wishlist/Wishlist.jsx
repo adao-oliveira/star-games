@@ -16,7 +16,7 @@ const Wishlist = ({ setOpenWishlist }) => {
   };
 
   const addToCartHandler = (data) => {
-    const newData = {...data, qty:1};
+    const newData = { ...data, qty: 1 };
     dispatch(addTocart(newData));
     setOpenWishlist(false);
   }
@@ -49,7 +49,7 @@ const Wishlist = ({ setOpenWishlist }) => {
               <div className={`${styles.noramlFlex} p-4`}>
                 <AiOutlineHeart size={25} />
                 <h5 className="pl-2 text-[20px] font-[500]">
-                  {wishlist && wishlist.length} items
+                  {wishlist && wishlist.length} itens
                 </h5>
               </div>
 
@@ -69,7 +69,7 @@ const Wishlist = ({ setOpenWishlist }) => {
   );
 };
 
-const CartSingle = ({ data,removeFromWishlistHandler,addToCartHandler }) => {
+const CartSingle = ({ data, removeFromWishlistHandler, addToCartHandler }) => {
   const [value, setValue] = useState(1);
   const totalPrice = data.discountPrice * value;
 
@@ -77,7 +77,7 @@ const CartSingle = ({ data,removeFromWishlistHandler,addToCartHandler }) => {
     <div className="border-b p-4">
       <div className="w-full 800px:flex items-center">
         <RxCross1 className="cursor-pointer 800px:mb-['unset'] 800px:ml-['unset'] mb-2 ml-2"
-        onClick={() => removeFromWishlistHandler(data)}
+          onClick={() => removeFromWishlistHandler(data)}
         />
         <img
           src={`${data?.images[0]?.url}`}
@@ -92,8 +92,8 @@ const CartSingle = ({ data,removeFromWishlistHandler,addToCartHandler }) => {
           </h4>
         </div>
         <div>
-          <BsCartPlus size={20} className="cursor-pointer" tile="Add to cart"
-           onClick={() => addToCartHandler(data)}
+          <BsCartPlus size={20} className="cursor-pointer" tile="Adicionar ao carrinho"
+            onClick={() => addToCartHandler(data)}
           />
         </div>
       </div>

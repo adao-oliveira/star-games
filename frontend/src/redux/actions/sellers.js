@@ -1,7 +1,7 @@
 import axios from "axios";
 import { server } from "../../server";
 
-// get all sellers --- admin
+// obter todos os vendedores --- admin
 export const getAllSellers = () => async (dispatch) => {
   try {
     dispatch({
@@ -19,7 +19,7 @@ export const getAllSellers = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "getAllSellerFailed",
-    //   payload: error.response.data.message,
+      //   payload: error.response.data.message,
     });
   }
 };

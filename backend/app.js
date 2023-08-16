@@ -16,7 +16,12 @@ app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
 
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+// app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+// var bodyParser = require('body-parser');
+// app.use(bodyParser.json({limit: '50mb'}));
+// app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
+app.use(express.json({ limit: '150mb' }));
+app.use(express.urlencoded({ extended: true, limit: '150mb' }));
 
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
@@ -25,7 +30,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   });
 }
 
-// import routes
+// importar rotas
 const user = require("./controller/user");
 const shop = require("./controller/shop");
 const product = require("./controller/product");

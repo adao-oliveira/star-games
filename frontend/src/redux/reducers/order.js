@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const orderReducer = createReducer(initialState, {
-  // get all orders of user
+  // obter todos os pedidos do usuário
   getAllOrdersUserRequest: (state) => {
     state.isLoading = true;
   },
@@ -17,8 +17,8 @@ export const orderReducer = createReducer(initialState, {
     state.isLoading = false;
     state.error = action.payload;
   },
-  
-  // get all orders of shop
+
+  // obter todos os pedidos da loja
   getAllOrdersShopRequest: (state) => {
     state.isLoading = true;
   },
@@ -31,7 +31,7 @@ export const orderReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // get all orders for admin
+  // obter todos os pedidos para admin
   adminAllOrdersRequest: (state) => {
     state.adminOrderLoading = true;
   },

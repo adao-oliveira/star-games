@@ -1,7 +1,7 @@
 import axios from "axios";
 import { server } from "../../server";
 
-// create product
+// Criar produto
 export const createProduct =
   (
     name,
@@ -14,37 +14,37 @@ export const createProduct =
     shopId,
     images
   ) =>
-  async (dispatch) => {
-    try {
-      dispatch({
-        type: "productCreateRequest",
-      });
+    async (dispatch) => {
+      try {
+        dispatch({
+          type: "productCreateRequest",
+        });
 
-      const { data } = await axios.post(
-        `${server}/product/create-product`,
-        name,
-        description,
-        category,
-        tags,
-        originalPrice,
-        discountPrice,
-        stock,
-        shopId,
-        images,
-      );
-      dispatch({
-        type: "productCreateSuccess",
-        payload: data.product,
-      });
-    } catch (error) {
-      dispatch({
-        type: "productCreateFail",
-        payload: error.response.data.message,
-      });
-    }
-  };
+        const { data } = await axios.post(
+          `${server}/product/create-product`,
+          name,
+          description,
+          category,
+          tags,
+          originalPrice,
+          discountPrice,
+          stock,
+          shopId,
+          images,
+        );
+        dispatch({
+          type: "productCreateSuccess",
+          payload: data.product,
+        });
+      } catch (error) {
+        dispatch({
+          type: "productCreateFail",
+          payload: error.response.data.message,
+        });
+      }
+    };
 
-// get All Products of a shop
+// obter todos os produtos de uma loja
 export const getAllProductsShop = (id) => async (dispatch) => {
   try {
     dispatch({
@@ -66,7 +66,7 @@ export const getAllProductsShop = (id) => async (dispatch) => {
   }
 };
 
-// delete product of a shop
+// excluir produto de uma loja
 export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({
@@ -92,7 +92,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
-// get all products
+// obter todos os produtos
 export const getAllProducts = () => async (dispatch) => {
   try {
     dispatch({

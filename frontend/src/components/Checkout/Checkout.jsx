@@ -27,31 +27,37 @@ const Checkout = () => {
   }, []);
 
   const paymentSubmit = () => {
-   if(address1 === "" || address2 === "" || zipCode === null || country === "" || city === ""){
-      toast.error("Please choose your delivery address!")
-   } else{
-    const shippingAddress = {
-      address1,
-      address2,
-      zipCode,
-      country,
-      city,
-    };
+    if (
+      address1 === "" ||
+      address2 === "" ||
+      zipCode === null ||
+      country === "" ||
+      city === ""
+    ) {
+      toast.error("Por favor, escolha o seu endereço de entrega!");
+    } else {
+      const shippingAddress = {
+        address1,
+        address2,
+        zipCode,
+        country,
+        city,
+      };
 
-    const orderData = {
-      cart,
-      totalPrice,
-      subTotalPrice,
-      shipping,
-      discountPrice,
-      shippingAddress,
-      user,
+      const orderData = {
+        cart,
+        totalPrice,
+        subTotalPrice,
+        shipping,
+        discountPrice,
+        shippingAddress,
+        user,
+      };
+
+      // atualize o armazenamento local com a matriz de pedidos atualizada
+      localStorage.setItem("latestOrder", JSON.stringify(orderData));
+      navigate("/payment");
     }
-
-    // update local storage with the updated orders array
-    localStorage.setItem("latestOrder", JSON.stringify(orderData));
-    navigate("/payment");
-   }
   };
 
   const subTotalPrice = cart.reduce(
@@ -59,7 +65,7 @@ const Checkout = () => {
     0
   );
 
-  // this is shipping cost variable
+  // este é o custo de envio variável
   const shipping = subTotalPrice * 0.1;
 
   const handleSubmit = async (e) => {
@@ -74,7 +80,7 @@ const Checkout = () => {
           cart && cart.filter((item) => item.shopId === shopId);
 
         if (isCouponValid.length === 0) {
-          toast.error("Coupon code is not valid for this shop");
+          toast.error("O código do cupom não é válido para esta loja");
           setCouponCode("");
         } else {
           const eligiblePrice = isCouponValid.reduce(
@@ -88,7 +94,7 @@ const Checkout = () => {
         }
       }
       if (res.data.couponCode === null) {
-        toast.error("Coupon code doesn't exists!");
+        toast.error("O código do cupom não existe!");
         setCouponCode("");
       }
     });
@@ -138,7 +144,7 @@ const Checkout = () => {
         className={`${styles.button} w-[150px] 800px:w-[280px] mt-10`}
         onClick={paymentSubmit}
       >
-        <h5 className="text-white">Go to Payment</h5>
+        <h5 className="text-white">Ir para Pagamento</h5>
       </div>
     </div>
   );
@@ -161,12 +167,12 @@ const ShippingInfo = ({
 }) => {
   return (
     <div className="w-full 800px:w-[95%] bg-white rounded-md p-5 pb-8">
-      <h5 className="text-[18px] font-[500]">Shipping Address</h5>
+      <h5 className="text-[18px] font-[500]">Endereço para envio</h5>
       <br />
       <form>
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Full Name</label>
+            <label className="block pb-2">Nome completo</label>
             <input
               type="text"
               value={user && user.name}
@@ -175,7 +181,7 @@ const ShippingInfo = ({
             />
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Email Address</label>
+            <label className="block pb-2">Endereço de e-mail</label>
             <input
               type="email"
               value={user && user.email}
@@ -187,7 +193,7 @@ const ShippingInfo = ({
 
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Phone Number</label>
+            <label className="block pb-2">Número de telefone</label>
             <input
               type="number"
               required
@@ -196,7 +202,7 @@ const ShippingInfo = ({
             />
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Zip Code</label>
+            <label className="block pb-2">CEP</label>
             <input
               type="number"
               value={zipCode}
@@ -209,14 +215,14 @@ const ShippingInfo = ({
 
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Country</label>
+            <label className="block pb-2">País</label>
             <select
               className="w-[95%] border h-[40px] rounded-[5px]"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             >
               <option className="block pb-2" value="">
-                Choose your country
+                Escolha seu país
               </option>
               {Country &&
                 Country.getAllCountries().map((item) => (
@@ -227,14 +233,14 @@ const ShippingInfo = ({
             </select>
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">City</label>
+            <label className="block pb-2">Estado</label>
             <select
               className="w-[95%] border h-[40px] rounded-[5px]"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             >
               <option className="block pb-2" value="">
-                Choose your City
+                Escolha seu Estado
               </option>
               {State &&
                 State.getStatesOfCountry(country).map((item) => (
@@ -248,7 +254,7 @@ const ShippingInfo = ({
 
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label className="block pb-2">Address1</label>
+            <label className="block pb-2">Endereço 1</label>
             <input
               type="address"
               required
@@ -258,7 +264,7 @@ const ShippingInfo = ({
             />
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2">Address2</label>
+            <label className="block pb-2">Endereço 2</label>
             <input
               type="address"
               value={address2}
@@ -275,7 +281,7 @@ const ShippingInfo = ({
         className="text-[18px] cursor-pointer inline-block"
         onClick={() => setUserInfo(!userInfo)}
       >
-        Choose From saved address
+        Escolha Do endereço salvo
       </h5>
       {userInfo && (
         <div>
@@ -315,28 +321,28 @@ const CartData = ({
   return (
     <div className="w-full bg-[#fff] rounded-md p-5 pb-8">
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">subtotal:</h3>
-        <h5 className="text-[18px] font-[600]">${subTotalPrice}</h5>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">Subtotal:</h3>
+        <h5 className="text-[18px] font-[600]">R${subTotalPrice}</h5>
       </div>
       <br />
       <div className="flex justify-between">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">shipping:</h3>
-        <h5 className="text-[18px] font-[600]">${shipping.toFixed(2)}</h5>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">Envio:</h3>
+        <h5 className="text-[18px] font-[600]">R${shipping.toFixed(2)}</h5>
       </div>
       <br />
       <div className="flex justify-between border-b pb-3">
-        <h3 className="text-[16px] font-[400] text-[#000000a4]">Discount:</h3>
+        <h3 className="text-[16px] font-[400] text-[#000000a4]">Desconto:</h3>
         <h5 className="text-[18px] font-[600]">
           - {discountPercentenge ? "$" + discountPercentenge.toString() : null}
         </h5>
       </div>
-      <h5 className="text-[18px] font-[600] text-end pt-3">${totalPrice}</h5>
+      <h5 className="text-[18px] font-[600] text-end pt-3">R${totalPrice}</h5>
       <br />
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           className={`${styles.input} h-[40px] pl-2`}
-          placeholder="Coupoun code"
+          placeholder="Código do cupom"
           value={couponCode}
           onChange={(e) => setCouponCode(e.target.value)}
           required
@@ -344,7 +350,7 @@ const CartData = ({
         <input
           className={`w-full h-[40px] border border-[#f63b60] text-center text-[#f63b60] rounded-[3px] mt-8 cursor-pointer`}
           required
-          value="Apply code"
+          value="Aplicar código"
           type="submit"
         />
       </form>

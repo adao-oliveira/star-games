@@ -12,7 +12,7 @@ const AllWithdraw = () => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [withdrawData, setWithdrawData] = useState();
-  const [withdrawStatus,setWithdrawStatus] = useState('Processing');
+  const [withdrawStatus, setWithdrawStatus] = useState("Processando");
 
   useEffect(() => {
     axios
@@ -28,51 +28,23 @@ const AllWithdraw = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "Withdraw Id", minWidth: 150, flex: 0.7 },
-    {
-      field: "name",
-      headerName: "Shop Name",
-      minWidth: 180,
-      flex: 1.4,
-    },
-    {
-      field: "shopId",
-      headerName: "Shop Id",
-      minWidth: 180,
-      flex: 1.4,
-    },
-    {
-      field: "amount",
-      headerName: "Amount",
-      minWidth: 100,
-      flex: 0.6,
-    },
-    {
-      field: "status",
-      headerName: "status",
-      type: "text",
-      minWidth: 80,
-      flex: 0.5,
-    },
-    {
-      field: "createdAt",
-      headerName: "Request given at",
-      type: "number",
-      minWidth: 130,
-      flex: 0.6,
-    },
+    { field: "id", headerName: "ID de retirada", minWidth: 150, flex: 0.7 },
+    { field: "name", headerName: "Nome da loja", minWidth: 180, flex: 1.4 },
+    { field: "shopId", headerName: "ID da loja", minWidth: 180, flex: 1.4 },
+    { field: "amount", headerName: "Quantia", minWidth: 100, flex: 0.6 },
+    { field: "status", headerName: "Status", type: "text", minWidth: 80, flex: 0.5 },
+    { field: "createdAt", headerName: "Pedido feito em", type: "number", minWidth: 130, flex: 0.6 },
     {
       field: " ",
-      headerName: "Update Status",
+      headerName: "Atualizar o status",
       type: "number",
       minWidth: 130,
       flex: 0.6,
       renderCell: (params) => {
-
         return (
           <BsPencil
             size={20}
-            className={`${params.row.status !== "Processing" ? 'hidden' : '' } mr-5 cursor-pointer`}
+            className={`${params.row.status !== "Processando" ? 'hidden' : '' } mr-5 cursor-pointer`}
             onClick={() => setOpen(true) || setWithdrawData(params.row)}
           />
         );
@@ -82,11 +54,11 @@ const AllWithdraw = () => {
 
   const handleSubmit = async () => {
     await axios
-      .put(`${server}/withdraw/update-withdraw-request/${withdrawData.id}`,{
+      .put(`${server}/withdraw/update-withdraw-request/${withdrawData.id}`, {
         sellerId: withdrawData.shopId,
-      },{withCredentials: true})
+      }, { withCredentials: true })
       .then((res) => {
-        toast.success("Withdraw request updated successfully!");
+        toast.success("Solicitação de retirada atualizada com sucesso!");
         setData(res.data.withdraws);
         setOpen(false);
       });
@@ -105,6 +77,7 @@ const AllWithdraw = () => {
         createdAt: item.createdAt.slice(0, 10),
       });
     });
+
   return (
     <div className="w-full flex items-center pt-5 justify-center">
       <div className="w-[95%] bg-white">
@@ -123,7 +96,7 @@ const AllWithdraw = () => {
               <RxCross1 size={25} onClick={() => setOpen(false)} />
             </div>
             <h1 className="text-[25px] text-center font-Poppins">
-              Update Withdraw status
+              Atualizar status de retirada
             </h1>
             <br />
             <select
@@ -133,14 +106,14 @@ const AllWithdraw = () => {
               className="w-[200px] h-[35px] border rounded"
             >
               <option value={withdrawStatus}>{withdrawData.status}</option>
-              <option value={withdrawStatus}>Succeed</option>
+              <option value={withdrawStatus}>Sucesso</option>
             </select>
             <button
               type="submit"
               className={`block ${styles.button} text-white !h-[42px] mt-4 text-[18px]`}
               onClick={handleSubmit}
             >
-              Update
+              Atualizar
             </button>
           </div>
         </div>

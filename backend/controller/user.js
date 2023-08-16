@@ -9,14 +9,14 @@ const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
 
-// create user
+// criar usuário
 router.post("/create-user", async (req, res, next) => {
   try {
     const { name, email, password, avatar } = req.body;
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      return next(new ErrorHandler("User already exists", 400));
+      return next(new ErrorHandler("Usuário já existe", 400));
     }
 
     const myCloud = await cloudinary.v2.uploader.upload(avatar, {
@@ -40,12 +40,12 @@ router.post("/create-user", async (req, res, next) => {
     try {
       await sendMail({
         email: user.email,
-        subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+        subject: "Ative sua conta",
+        message: `Olá ${user.name}, clique no link para ativar sua conta: ${activationUrl}`,
       });
       res.status(201).json({
         success: true,
-        message: `please check your email:- ${user.email} to activate your account!`,
+        message: `Por favor verifique seu email:- ${user.email} para ativar sua conta!`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -55,14 +55,14 @@ router.post("/create-user", async (req, res, next) => {
   }
 });
 
-// create activation token
+// criar token de ativação
 const createActivationToken = (user) => {
   return jwt.sign(user, process.env.ACTIVATION_SECRET, {
     expiresIn: "5m",
   });
 };
 
-// activate user
+// ativar usuário
 router.post(
   "/activation",
   catchAsyncErrors(async (req, res, next) => {
@@ -75,14 +75,14 @@ router.post(
       );
 
       if (!newUser) {
-        return next(new ErrorHandler("Invalid token", 400));
+        return next(new ErrorHandler("Token inválido", 400));
       }
       const { name, email, password, avatar } = newUser;
 
       let user = await User.findOne({ email });
 
       if (user) {
-        return next(new ErrorHandler("User already exists", 400));
+        return next(new ErrorHandler("Usuário já existe", 400));
       }
       user = await User.create({
         name,
@@ -98,7 +98,7 @@ router.post(
   })
 );
 
-// login user
+// login usuário
 router.post(
   "/login-user",
   catchAsyncErrors(async (req, res, next) => {
@@ -106,20 +106,20 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("Forneça todos os campos!", 400));
       }
 
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("O usuário não existe!", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("Senha incorreta!", 400)
         );
       }
 
@@ -130,7 +130,7 @@ router.post(
   })
 );
 
-// load user
+// carregar usuário
 router.get(
   "/getuser",
   isAuthenticated,
@@ -139,7 +139,7 @@ router.get(
       const user = await User.findById(req.user.id);
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists", 400));
+        return next(new ErrorHandler("O usuário não existe", 400));
       }
 
       res.status(200).json({
@@ -152,7 +152,7 @@ router.get(
   })
 );
 
-// log out user
+// log out usuário
 router.get(
   "/logout",
   catchAsyncErrors(async (req, res, next) => {
@@ -165,7 +165,7 @@ router.get(
       });
       res.status(201).json({
         success: true,
-        message: "Log out successful!",
+        message: "Log out com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -173,7 +173,7 @@ router.get(
   })
 );
 
-// update user info
+// atualizar informações do usuário
 router.put(
   "/update-user-info",
   isAuthenticated,
@@ -184,14 +184,14 @@ router.put(
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User not found", 400));
+        return next(new ErrorHandler("Usuário não encontrado", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("Senha incorreta!", 400)
         );
       }
 
@@ -211,7 +211,7 @@ router.put(
   })
 );
 
-// update user avatar
+// atualizar avatar do usuário
 router.put(
   "/update-avatar",
   isAuthenticated,
@@ -246,7 +246,7 @@ router.put(
   })
 );
 
-// update user addresses
+// atualizar endereços de usuário
 router.put(
   "/update-user-addresses",
   isAuthenticated,
@@ -259,7 +259,7 @@ router.put(
       );
       if (sameTypeAddress) {
         return next(
-          new ErrorHandler(`${req.body.addressType} address already exists`)
+          new ErrorHandler(`${req.body.addressType} endereço já existe`)
         );
       }
 
@@ -270,7 +270,7 @@ router.put(
       if (existsAddress) {
         Object.assign(existsAddress, req.body);
       } else {
-        // add the new address to the array
+        // adicione o novo endereço ao array
         user.addresses.push(req.body);
       }
 
@@ -286,7 +286,7 @@ router.put(
   })
 );
 
-// delete user address
+// excluir endereço do usuário
 router.delete(
   "/delete-user-address/:id",
   isAuthenticated,
@@ -311,7 +311,7 @@ router.delete(
   })
 );
 
-// update user password
+// atualize a senha do usuário
 router.put(
   "/update-user-password",
   isAuthenticated,
@@ -324,12 +324,12 @@ router.put(
       );
 
       if (!isPasswordMatched) {
-        return next(new ErrorHandler("Old password is incorrect!", 400));
+        return next(new ErrorHandler("A senha antiga é incorreta!", 400));
       }
 
       if (req.body.newPassword !== req.body.confirmPassword) {
         return next(
-          new ErrorHandler("Password doesn't matched with each other!", 400)
+          new ErrorHandler("A senha não corresponde com a nova!", 400)
         );
       }
       user.password = req.body.newPassword;
@@ -338,7 +338,7 @@ router.put(
 
       res.status(200).json({
         success: true,
-        message: "Password updated successfully!",
+        message: "Senha atualizada com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -346,7 +346,7 @@ router.put(
   })
 );
 
-// find user infoormation with the userId
+// encontre informações do usuário com o userId
 router.get(
   "/user-info/:id",
   catchAsyncErrors(async (req, res, next) => {
@@ -363,7 +363,7 @@ router.get(
   })
 );
 
-// all users --- for admin
+// todos os usuários --- para admin
 router.get(
   "/admin-all-users",
   isAuthenticated,
@@ -383,7 +383,7 @@ router.get(
   })
 );
 
-// delete users --- admin
+// excluir usuários --- administrador
 router.delete(
   "/delete-user/:id",
   isAuthenticated,
@@ -394,7 +394,7 @@ router.delete(
 
       if (!user) {
         return next(
-          new ErrorHandler("User is not available with this id", 400)
+          new ErrorHandler("O usuário não está disponível com este ID.", 400)
         );
       }
 
@@ -406,7 +406,7 @@ router.delete(
 
       res.status(201).json({
         success: true,
-        message: "User deleted successfully!",
+        message: "Usuário excluído com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

@@ -7,7 +7,7 @@ const Withdraw = require("../model/withdraw");
 const sendMail = require("../utils/sendMail");
 const router = express.Router();
 
-// create withdraw request --- only for seller
+// criar solicitação de retirada --- somente para vendedor
 router.post(
   "/create-withdraw-request",
   isSeller,
@@ -23,8 +23,8 @@ router.post(
       try {
         await sendMail({
           email: req.seller.email,
-          subject: "Withdraw Request",
-          message: `Hello ${req.seller.name}, Your withdraw request of ${amount}$ is processing. It will take 3days to 7days to processing! `,
+          subject: "Solicitação de Retirada",
+          message: `Olá ${req.seller.name}, Seu pedido de retirada de ${amount}$ está processando. Levará de 3 dias a 7 dias para processar! `,
         });
         res.status(201).json({
           success: true,
@@ -51,7 +51,7 @@ router.post(
   })
 );
 
-// get all withdraws --- admnin
+// obter todas as retiradas --- admin
 
 router.get(
   "/get-all-withdraw-request",
@@ -71,7 +71,7 @@ router.get(
   })
 );
 
-// update withdraw request ---- admin
+// atualizar solicitação de retirada ---- admin
 router.put(
   "/update-withdraw-request/:id",
   isAuthenticated,
@@ -83,7 +83,7 @@ router.put(
       const withdraw = await Withdraw.findByIdAndUpdate(
         req.params.id,
         {
-          status: "succeed",
+          status: "sucesso",
           updatedAt: Date.now(),
         },
         { new: true }
@@ -105,8 +105,8 @@ router.put(
       try {
         await sendMail({
           email: seller.email,
-          subject: "Payment confirmation",
-          message: `Hello ${seller.name}, Your withdraw request of ${withdraw.amount}$ is on the way. Delivery time depends on your bank's rules it usually takes 3days to 7days.`,
+          subject: "Confirmação de pagamento",
+          message: `Olá ${seller.name}, Seu pedido de retirada de ${withdraw.amount}$ está no caminho. O tempo de entrega depende das regras do seu banco, geralmente leva de 3 dias a 7 dias.`,
         });
       } catch (error) {
         return next(new ErrorHandler(error.message, 500));

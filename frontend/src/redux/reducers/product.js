@@ -19,7 +19,7 @@ export const productReducer = createReducer(initialState, {
     state.success = false;
   },
 
-  // get all products of shop
+  // obter todos os produtos da loja
   getAllProductsShopRequest: (state) => {
     state.isLoading = true;
   },
@@ -32,7 +32,7 @@ export const productReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // delete product of a shop
+  // excluir produto de uma loja
   deleteProductRequest: (state) => {
     state.isLoading = true;
   },
@@ -45,7 +45,7 @@ export const productReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // get all products
+  // obter todos os produtos
   getAllProductsRequest: (state) => {
     state.isLoading = true;
   },
@@ -57,7 +57,7 @@ export const productReducer = createReducer(initialState, {
     state.isLoading = false;
     state.error = action.payload;
   },
-  
+
   clearErrors: (state) => {
     state.error = null;
   },

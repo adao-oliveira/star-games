@@ -36,7 +36,7 @@ const Faq = () => {
             onClick={() => toggleTab(2)}
           >
             <span className="text-lg font-medium text-gray-900">
-            Qual é a sua política de devolução?
+              Qual é a sua política de devolução?
             </span>
             {activeTab === 2 ? (
               <svg
@@ -71,7 +71,7 @@ const Faq = () => {
           {activeTab === 2 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-              Se você não estiver satisfeito com sua compra, aceitamos devoluções
+                Se você não estiver satisfeito com sua compra, aceitamos devoluções
                 em até 30 dias após a entrega. Para iniciar uma devolução, envie um e-mail para
                 nós em support@myecommercestore.com com o número do seu pedido e um
                 breve explicação de por que você está devolvendo o item.
@@ -86,7 +86,7 @@ const Faq = () => {
             onClick={() => toggleTab(3)}
           >
             <span className="text-lg font-medium text-gray-900">
-            Como faço para rastrear meu pedido?
+              Como faço para rastrear meu pedido?
             </span>
             {activeTab === 3 ? (
               <svg
@@ -121,7 +121,7 @@ const Faq = () => {
           {activeTab === 3 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-              Você pode rastrear seu pedido clicando no link de rastreamento em seu
+                Você pode rastrear seu pedido clicando no link de rastreamento em seu
                 e-mail de confirmação de envio ou acessando sua conta em
                 nosso site e visualizando os detalhes do pedido.
               </p>
@@ -135,7 +135,7 @@ const Faq = () => {
             onClick={() => toggleTab(4)}
           >
             <span className="text-lg font-medium text-gray-900">
-            Como entro em contato com o suporte ao cliente?
+              Como entro em contato com o suporte ao cliente?
             </span>
             {activeTab === 4 ? (
               <svg
@@ -170,7 +170,7 @@ const Faq = () => {
           {activeTab === 4 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-              Você pode entrar em contato com nossa equipe de suporte ao cliente enviando um e-mail para
+                Você pode entrar em contato com nossa equipe de suporte ao cliente enviando um e-mail para
                 support@stargamers.com, ou ligando para (11) 99999-9999
                 entre as 9h e as 17h, de segunda a sexta-feira.
               </p>
@@ -184,7 +184,7 @@ const Faq = () => {
             onClick={() => toggleTab(5)}
           >
             <span className="text-lg font-medium text-gray-900">
-            Posso alterar ou cancelar meu pedido?
+              Posso alterar ou cancelar meu pedido?
             </span>
             {activeTab === 5 ? (
               <svg
@@ -219,7 +219,7 @@ const Faq = () => {
           {activeTab === 5 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-              Infelizmente, depois que um pedido é feito, não podemos
+                Infelizmente, depois que um pedido é feito, não podemos
                 fazer alterações ou cancelamentos. Se você não quiser mais os itens
                 você encomendou, você pode devolvê-los para um reembolso no prazo de 30 dias
                 de entrega.
@@ -234,7 +234,7 @@ const Faq = () => {
             onClick={() => toggleTab(6)}
           >
             <span className="text-lg font-medium text-gray-900">
-            Você oferece frete internacional?
+              Você oferece frete internacional?
             </span>
             {activeTab === 6 ? (
               <svg
@@ -269,7 +269,7 @@ const Faq = () => {
           {activeTab === 6 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-              Atualmente, oferecemos apenas remessas dentro dos Estados Unidos.
+                Atualmente, oferecemos apenas remessas dentro dos Estados Unidos.
               </p>
             </div>
           )}
@@ -281,7 +281,7 @@ const Faq = () => {
             onClick={() => toggleTab(7)}
           >
             <span className="text-lg font-medium text-gray-900">
-            Que tipos de pagamentos você aceita?
+              Que tipos de pagamentos você aceita?
             </span>
             {activeTab === 7 ? (
               <svg
@@ -316,7 +316,7 @@ const Faq = () => {
           {activeTab === 7 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-              Aceitamos visa, mastercard, método de pagamento paypal também temos
+                Aceitamos visa, mastercard, método de pagamento paypal também temos
                 sistema de pagamento em dinheiro na entrega.
               </p>
             </div>

@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello world from socket server!");
+  res.send("Bem vindo ao servidor socket!");
 });
 
 let users = [];
@@ -32,7 +32,7 @@ const getUser = (receiverId) => {
   return users.find((user) => user.userId === receiverId);
 };
 
-// Define a message object with a seen property
+// Definir um objeto de mensagem com uma propriedade vista
 const createMessage = ({ senderId, receiverId, text, images }) => ({
   senderId,
   receiverId,
@@ -42,38 +42,38 @@ const createMessage = ({ senderId, receiverId, text, images }) => ({
 });
 
 io.on("connection", (socket) => {
-  // when connect
-  console.log(`a user is connected`);
+  // quando conectar
+  console.log(`um usuário está conectado`);
 
-  // take userId and socketId from user
+  // pegue userId e socketId do usuário
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
     io.emit("getUsers", users);
   });
 
-  // send and get message
-  const messages = {}; // Object to track messages sent to each user
+  // enviar e receber mensagem
+  const messages = {}; // Objeto para rastrear mensagens enviadas para cada usuário
 
   socket.on("sendMessage", ({ senderId, receiverId, text, images }) => {
     const message = createMessage({ senderId, receiverId, text, images });
 
     const user = getUser(receiverId);
 
-    // Store the messages in the `messages` object
+    // Armazene as mensagens no objeto `messages`
     if (!messages[receiverId]) {
       messages[receiverId] = [message];
     } else {
       messages[receiverId].push(message);
     }
 
-    // send the message to the recevier
+    // enviar a mensagem para o destinatário
     io.to(user?.socketId).emit("getMessage", message);
   });
 
   socket.on("messageSeen", ({ senderId, receiverId, messageId }) => {
     const user = getUser(senderId);
 
-    // update the seen flag for the message
+    // atualize o flag visto para a mensagem
     if (messages[senderId]) {
       const message = messages[senderId].find(
         (message) =>
@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
       if (message) {
         message.seen = true;
 
-        // send a message seen event to the sender
+        // enviar uma mensagem vista evento para o remetente
         io.to(user?.socketId).emit("messageSeen", {
           senderId,
           receiverId,
@@ -92,7 +92,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  // update and get last message
+  // atualize e receba a última mensagem
   socket.on("updateLastMessage", ({ lastMessage, lastMessagesId }) => {
     io.emit("getLastMessage", {
       lastMessage,
@@ -100,14 +100,14 @@ io.on("connection", (socket) => {
     });
   });
 
-  //when disconnect
+  //quando desconectar
   socket.on("disconnect", () => {
-    console.log(`a user disconnected!`);
+    console.log(`um usuário desconectado!`);
     removeUser(socket.id);
     io.emit("getUsers", users);
   });
 });
 
 server.listen(process.env.PORT || 4000, () => {
-  console.log(`server is running on port ${process.env.PORT || 4000}`);
+  console.log(`servidor está rodando na porta ${process.env.PORT || 4000}`);
 });

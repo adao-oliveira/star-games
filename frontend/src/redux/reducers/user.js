@@ -19,7 +19,7 @@ export const userReducer = createReducer(initialState, {
     state.isAuthenticated = false;
   },
 
-  // update user information
+  // atualizar informações do usuário
   updateUserInfoRequest: (state) => {
     state.loading = true;
   },
@@ -32,7 +32,7 @@ export const userReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // update user address
+  // atualize o endereço do usuário
   updateUserAddressRequest: (state) => {
     state.addressloading = true;
   },
@@ -46,7 +46,7 @@ export const userReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // delete user address
+  // excluir endereço do usuário
   deleteUserAddressRequest: (state) => {
     state.addressloading = true;
   },
@@ -60,15 +60,15 @@ export const userReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // get all users --- admin
+  // obter todos os usuários --- admin
   getAllUsersRequest: (state) => {
     state.usersLoading = true;
   },
-  getAllUsersSuccess: (state,action) => {
+  getAllUsersSuccess: (state, action) => {
     state.usersLoading = false;
     state.users = action.payload;
   },
-  getAllUsersFailed: (state,action) => {
+  getAllUsersFailed: (state, action) => {
     state.usersLoading = false;
     state.error = action.payload;
   },

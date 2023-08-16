@@ -19,7 +19,7 @@ export const eventReducer = createReducer(initialState, {
     state.success = false;
   },
 
-  // get all events of shop
+  // obter todos os eventos da loja
   getAlleventsShopRequest: (state) => {
     state.isLoading = true;
   },
@@ -32,7 +32,7 @@ export const eventReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // delete event of a shop
+  // excluir evento de uma loja
   deleteeventRequest: (state) => {
     state.isLoading = true;
   },
@@ -45,7 +45,7 @@ export const eventReducer = createReducer(initialState, {
     state.error = action.payload;
   },
 
-  // get all events 
+  // obter todos os eventos 
   getAlleventsRequest: (state) => {
     state.isLoading = true;
   },

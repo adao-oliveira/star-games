@@ -23,60 +23,32 @@ const AllUsers = () => {
 
   const handleDelete = async (id) => {
     await axios
-    .delete(`${server}/user/delete-user/${id}`, { withCredentials: true })
-    .then((res) => {
-      toast.success(res.data.message);
-    });
+      .delete(`${server}/user/delete-user/${id}`, { withCredentials: true })
+      .then((res) => {
+        toast.success(res.data.message);
+      });
 
-  dispatch(getAllUsers());
+    dispatch(getAllUsers());
   };
 
   const columns = [
-    { field: "id", headerName: "User ID", minWidth: 150, flex: 0.7 },
-
-    {
-      field: "name",
-      headerName: "name",
-      minWidth: 130,
-      flex: 0.7,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      type: "text",
-      minWidth: 130,
-      flex: 0.7,
-    },
-    {
-      field: "role",
-      headerName: "User Role",
-      type: "text",
-      minWidth: 130,
-      flex: 0.7,
-    },
-
-    {
-      field: "joinedAt",
-      headerName: "joinedAt",
-      type: "text",
-      minWidth: 130,
-      flex: 0.8,
-    },
-
+    { field: "id", headerName: "ID do usuário", minWidth: 150, flex: 0.7 },
+    { field: "name", headerName: "Nome", minWidth: 130, flex: 0.7 },
+    { field: "email", headerName: "E-mail", type: "text", minWidth: 130, flex: 0.7 },
+    { field: "role", headerName: "Perfil do usuário", type: "text", minWidth: 130, flex: 0.7 },
+    { field: "joinedAt", headerName: "Juntou-se em", type: "text", minWidth: 130, flex: 0.8 },
     {
       field: " ",
       flex: 1,
       minWidth: 150,
-      headerName: "Delete User",
+      headerName: "Deletar usuário",
       type: "number",
       sortable: false,
       renderCell: (params) => {
         return (
-          <>
-            <Button onClick={() => setUserId(params.id) || setOpen(true)}>
-              <AiOutlineDelete size={20} />
-            </Button>
-          </>
+          <Button onClick={() => setUserId(params.id) || setOpen(true)}>
+            <AiOutlineDelete size={20} />
+          </Button>
         );
       },
     },
@@ -97,7 +69,7 @@ const AllUsers = () => {
   return (
     <div className="w-full flex justify-center pt-5">
       <div className="w-[97%]">
-        <h3 className="text-[22px] font-Poppins pb-2">All Users</h3>
+        <h3 className="text-[22px] font-Poppins pb-2">Todos os usuários</h3>
         <div className="w-full min-h-[45vh] bg-white rounded">
           <DataGrid
             rows={row}
@@ -114,20 +86,20 @@ const AllUsers = () => {
                 <RxCross1 size={25} onClick={() => setOpen(false)} />
               </div>
               <h3 className="text-[25px] text-center py-5 font-Poppins text-[#000000cb]">
-                Are you sure you wanna delete this user?
+                Tem certeza de que deseja excluir este usuário?
               </h3>
               <div className="w-full flex items-center justify-center">
                 <div
                   className={`${styles.button} text-white text-[18px] !h-[42px] mr-4`}
                   onClick={() => setOpen(false)}
                 >
-                  cancel
+                  Cancelar
                 </div>
                 <div
                   className={`${styles.button} text-white text-[18px] !h-[42px] ml-4`}
-                  onClick={() =>  setOpen(false) || handleDelete(userId)}
+                  onClick={() => setOpen(false) || handleDelete(userId)}
                 >
-                  confirm
+                  Confirmar
                 </div>
               </div>
             </div>

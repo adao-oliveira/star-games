@@ -20,7 +20,7 @@ import { addTocart } from "../../../redux/actions/cart";
 import { toast } from "react-toastify";
 import Ratings from "../../Products/Ratings";
 
-const ProductCard = ({ data,isEvent }) => {
+const ProductCard = ({ data, isEvent }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const [click, setClick] = useState(false);
@@ -48,14 +48,14 @@ const ProductCard = ({ data,isEvent }) => {
   const addToCartHandler = (id) => {
     const isItemExists = cart && cart.find((i) => i._id === id);
     if (isItemExists) {
-      toast.error("Item already in cart!");
+      toast.error("Item já está no carrinho!");
     } else {
       if (data.stock < 1) {
-        toast.error("Product stock limited!");
+        toast.error("Estoque de produtos limitado!");
       } else {
         const cartData = { ...data, qty: 1 };
         dispatch(addTocart(cartData));
-        toast.success("Item added to cart successfully!");
+        toast.success("Item adicionado ao carrinho com sucesso!");
       }
     }
   };
@@ -80,7 +80,7 @@ const ProductCard = ({ data,isEvent }) => {
           </h4>
 
           <div className="flex">
-          <Ratings rating={data?.ratings} />
+            <Ratings rating={data?.ratings} />
           </div>
 
           <div className="py-2 flex items-center justify-between">
@@ -89,14 +89,14 @@ const ProductCard = ({ data,isEvent }) => {
                 {data.originalPrice === 0
                   ? data.originalPrice
                   : data.discountPrice}
-                $
+                R$
               </h5>
               <h4 className={`${styles.price}`}>
-                {data.originalPrice ? data.originalPrice + " $" : null}
+                {data.originalPrice ? data.originalPrice + "R$" : null}
               </h4>
             </div>
             <span className="font-[400] text-[17px] text-[#68d284]">
-              {data?.sold_out} sold
+              {data?.sold_out} vendido
             </span>
           </div>
         </Link>
@@ -109,7 +109,7 @@ const ProductCard = ({ data,isEvent }) => {
               className="cursor-pointer absolute right-2 top-5"
               onClick={() => removeFromWishlistHandler(data)}
               color={click ? "red" : "#333"}
-              title="Remove from wishlist"
+              title="Remover da lista de desejos"
             />
           ) : (
             <AiOutlineHeart
@@ -117,7 +117,7 @@ const ProductCard = ({ data,isEvent }) => {
               className="cursor-pointer absolute right-2 top-5"
               onClick={() => addToWishlistHandler(data)}
               color={click ? "red" : "#333"}
-              title="Add to wishlist"
+              title="Adicionar a lista de desejos"
             />
           )}
           <AiOutlineEye
@@ -125,14 +125,14 @@ const ProductCard = ({ data,isEvent }) => {
             className="cursor-pointer absolute right-2 top-14"
             onClick={() => setOpen(!open)}
             color="#333"
-            title="Quick view"
+            title="Visualização rápida"
           />
           <AiOutlineShoppingCart
             size={25}
             className="cursor-pointer absolute right-2 top-24"
             onClick={() => addToCartHandler(data._id)}
             color="#444"
-            title="Add to cart"
+            title="Adicionar ao carrinho"
           />
           {open ? <ProductDetailsCard setOpen={setOpen} data={data} /> : null}
         </div>

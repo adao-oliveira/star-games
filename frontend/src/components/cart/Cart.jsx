@@ -49,15 +49,15 @@ const Cart = ({ setOpenCart }) => {
                   onClick={() => setOpenCart(false)}
                 />
               </div>
-              {/* Item length */}
+              {/* Comprimento do item */}
               <div className={`${styles.noramlFlex} p-4`}>
                 <IoBagHandleOutline size={25} />
                 <h5 className="pl-2 text-[20px] font-[500]">
-                  {cart && cart.length} items
+                  {cart && cart.length} itens
                 </h5>
               </div>
 
-              {/* cart Single Items */}
+              {/* carrinho Itens individuais */}
               <br />
               <div className="w-full border-t">
                 {cart &&
@@ -73,7 +73,7 @@ const Cart = ({ setOpenCart }) => {
             </div>
 
             <div className="px-5 mb-3">
-              {/* checkout buttons */}
+              {/* botões de checkout */}
               <Link to="/checkout">
                 <div
                   className={`h-[45px] flex items-center justify-center w-[100%] bg-[#e44343] rounded-[5px]`}
@@ -97,7 +97,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
 
   const increment = (data) => {
     if (data.stock < value) {
-      toast.error("Product stock limited!");
+      toast.error("Estoque de produtos limitado!");
     } else {
       setValue(value + 1);
       const updateCartData = { ...data, qty: value + 1 };

@@ -1,29 +1,29 @@
 const mongoose = require("mongoose");
 
 const coupounCodeSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        required:[true,"Please enter your coupoun code name!"],
+        required: [true, "Por favor, digite o nome do código do seu cupom!"],
         unique: true,
     },
-    value:{
+    value: {
         type: Number,
         required: true,
     },
-    minAmount:{
+    minAmount: {
         type: Number,
     },
-    maxAmount:{
+    maxAmount: {
         type: Number,
     },
-    shopId:{
-     type: String,
-     required: true,
+    shopId: {
+        type: String,
+        required: true,
     },
-    selectedProduct:{
-     type: String,
+    selectedProduct: {
+        type: String,
     },
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now(),
     }

@@ -6,9 +6,9 @@ import TrackOrder from "../components/Profile/TrackOrder";
 const TrackOrderPage = () => {
   return (
     <div>
-        <Header />
-        <TrackOrder />
-        <Footer />
+      <Header />
+      <TrackOrder />
+      <Footer />
     </div>
   )
 }

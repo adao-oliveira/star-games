@@ -8,7 +8,7 @@ const Shop = require("../model/shop");
 const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 
-// create product
+// Criar produto
 router.post(
   "/create-product",
   catchAsyncErrors(async (req, res, next) => {
@@ -16,7 +16,7 @@ router.post(
       const shopId = req.body.shopId;
       const shop = await Shop.findById(shopId);
       if (!shop) {
-        return next(new ErrorHandler("Shop Id is invalid!", 400));
+        return next(new ErrorHandler("O ID da loja é inválido!", 400));
       } else {
         let images = [];
 
@@ -25,20 +25,20 @@ router.post(
         } else {
           images = req.body.images;
         }
-      
+
         const imagesLinks = [];
-      
+
         for (let i = 0; i < images.length; i++) {
           const result = await cloudinary.v2.uploader.upload(images[i], {
             folder: "products",
           });
-      
+
           imagesLinks.push({
             public_id: result.public_id,
             url: result.secure_url,
           });
         }
-      
+
         const productData = req.body;
         productData.images = imagesLinks;
         productData.shop = shop;
@@ -56,7 +56,7 @@ router.post(
   })
 );
 
-// get all products of a shop
+// obter todos os produtos de uma loja
 router.get(
   "/get-all-products-shop/:id",
   catchAsyncErrors(async (req, res, next) => {
@@ -73,7 +73,7 @@ router.get(
   })
 );
 
-// delete product of a shop
+// excluir produto de uma loja
 router.delete(
   "/delete-shop-product/:id",
   isSeller,
@@ -82,20 +82,20 @@ router.delete(
       const product = await Product.findById(req.params.id);
 
       if (!product) {
-        return next(new ErrorHandler("Product is not found with this id", 404));
-      }    
+        return next(new ErrorHandler("O produto não foi encontrado com este id", 404));
+      }
 
       for (let i = 0; 1 < product.images.length; i++) {
         const result = await cloudinary.v2.uploader.destroy(
           product.images[i].public_id
         );
       }
-    
+
       await product.remove();
 
       res.status(201).json({
         success: true,
-        message: "Product Deleted successfully!",
+        message: "Produto Excluído com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error, 400));
@@ -103,7 +103,7 @@ router.delete(
   })
 );
 
-// get all products
+// obter todos os produtos
 router.get(
   "/get-all-products",
   catchAsyncErrors(async (req, res, next) => {
@@ -120,7 +120,7 @@ router.get(
   })
 );
 
-// review for a product
+// avaliação de um produto
 router.put(
   "/create-new-review",
   isAuthenticated,
@@ -169,7 +169,7 @@ router.put(
 
       res.status(200).json({
         success: true,
-        message: "Reviwed succesfully!",
+        message: "Avaliação realizada com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error, 400));
@@ -177,7 +177,7 @@ router.put(
   })
 );
 
-// all products --- for admin
+// todos os produtos --- para admin
 router.get(
   "/admin-all-products",
   isAuthenticated,

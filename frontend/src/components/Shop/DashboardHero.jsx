@@ -16,14 +16,14 @@ const DashboardHero = () => {
   const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-     dispatch(getAllOrdersOfShop(seller._id));
-     dispatch(getAllProductsShop(seller._id));
+    dispatch(getAllOrdersOfShop(seller._id));
+    dispatch(getAllProductsShop(seller._id));
   }, [dispatch]);
 
   const availableBalance = seller?.availableBalance.toFixed(2);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "ID do pedido", minWidth: 150, flex: 0.7 },
 
     {
       field: "status",
@@ -31,14 +31,14 @@ const DashboardHero = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
+        return params.getValue(params.id, "status") === "Entregue"
           ? "greenColor"
           : "redColor";
       },
     },
     {
       field: "itemsQty",
-      headerName: "Items Qty",
+      headerName: "Qtde Itens",
       type: "number",
       minWidth: 130,
       flex: 0.7,
@@ -77,15 +77,15 @@ const DashboardHero = () => {
 
   orders && orders.forEach((item) => {
     row.push({
-        id: item._id,
-        itemsQty: item.cart.reduce((acc, item) => acc + item.qty, 0),
-        total: "R$ " + item.totalPrice,
-        status: item.status,
-      });
+      id: item._id,
+      itemsQty: item.cart.reduce((acc, item) => acc + item.qty, 0),
+      total: "R$ " + item.totalPrice,
+      status: item.status,
+    });
   });
   return (
     <div className="w-full p-8">
-      <h3 className="text-[22px] font-Poppins pb-2">Overview</h3>
+      <h3 className="text-[22px] font-Poppins pb-2">Visão geral</h3>
       <div className="w-full block 800px:flex items-center justify-between">
         <div className="w-full mb-4 800px:w-[30%] min-h-[20vh] bg-white shadow rounded px-2 py-5">
           <div className="flex items-center">
@@ -97,13 +97,13 @@ const DashboardHero = () => {
             <h3
               className={`${styles.productTitle} !text-[18px] leading-5 !font-[400] text-[#00000085]`}
             >
-              Account Balance{" "}
-              <span className="text-[16px]">(with 10% service charge)</span>
+              Saldo da conta{" "}
+              <span className="text-[16px]">(com 10% de taxa de serviço)</span>
             </h3>
           </div>
-          <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">${availableBalance}</h5>
+          <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">R${availableBalance}</h5>
           <Link to="/dashboard-withdraw-money">
-            <h5 className="pt-4 pl-[2] text-[#077f9c]">Withdraw Money</h5>
+            <h5 className="pt-4 pl-[2] text-[#077f9c]">Retirar dinheiro</h5>
           </Link>
         </div>
 
@@ -113,12 +113,12 @@ const DashboardHero = () => {
             <h3
               className={`${styles.productTitle} !text-[18px] leading-5 !font-[400] text-[#00000085]`}
             >
-              All Orders
+              Todos os pedidos
             </h3>
           </div>
           <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">{orders && orders.length}</h5>
           <Link to="/dashboard-orders">
-            <h5 className="pt-4 pl-2 text-[#077f9c]">View Orders</h5>
+            <h5 className="pt-4 pl-2 text-[#077f9c]">Ver Pedidos</h5>
           </Link>
         </div>
 
@@ -132,25 +132,25 @@ const DashboardHero = () => {
             <h3
               className={`${styles.productTitle} !text-[18px] leading-5 !font-[400] text-[#00000085]`}
             >
-              All Products
+              Todos os produtos
             </h3>
           </div>
           <h5 className="pt-2 pl-[36px] text-[22px] font-[500]">{products && products.length}</h5>
           <Link to="/dashboard-products">
-            <h5 className="pt-4 pl-2 text-[#077f9c]">View Products</h5>
+            <h5 className="pt-4 pl-2 text-[#077f9c]">Ver produtos</h5>
           </Link>
         </div>
       </div>
       <br />
-      <h3 className="text-[22px] font-Poppins pb-2">Latest Orders</h3>
+      <h3 className="text-[22px] font-Poppins pb-2">Últimos Pedidos</h3>
       <div className="w-full min-h-[45vh] bg-white rounded">
-      <DataGrid
-        rows={row}
-        columns={columns}
-        pageSize={10}
-        disableSelectionOnClick
-        autoHeight
-      />
+        <DataGrid
+          rows={row}
+          columns={columns}
+          pageSize={10}
+          disableSelectionOnClick
+          autoHeight
+        />
       </div>
     </div>
   );

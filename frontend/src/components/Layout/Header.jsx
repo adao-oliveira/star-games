@@ -64,7 +64,7 @@ const Header = ({ activeHeading }) => {
               <h1>Star Gamers</h1>
             </Link>
           </div>
-          {/* search box */}
+          {/* caixa de pesquisa */}
           <div className="w-[50%] relative">
             <input
               type="text"
@@ -116,7 +116,7 @@ const Header = ({ activeHeading }) => {
         <div
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
         >
-          {/* categories */}
+          {/* categorias */}
           <div onClick={() => setDropDown(!dropDown)}>
             <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
               <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
@@ -189,10 +189,10 @@ const Header = ({ activeHeading }) => {
               </div>
             </div>
 
-            {/* cart popup */}
+            {/* carrinho pop-up */}
             {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
-            {/* wishlist popup */}
+            {/* pop-up da lista de desejos */}
             {openWishlist ? (
               <Wishlist setOpenWishlist={setOpenWishlist} />
             ) : null}
@@ -217,11 +217,12 @@ const Header = ({ activeHeading }) => {
           </div>
           <div>
             <Link to="/">
-              <img
+              {/* <img
                 src="https://shopo.quomodothemes.website/assets/images/logo.svg"
                 alt=""
                 className="mt-3 cursor-pointer"
-              />
+              /> */}
+              <h1 style={{ fontSize: "25px" }}>Star Gamers</h1>
             </Link>
           </div>
           <div>
@@ -235,10 +236,10 @@ const Header = ({ activeHeading }) => {
               </span>
             </div>
           </div>
-          {/* cart popup */}
+          {/* carrinho pop-up */}
           {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
-          {/* wishlist popup */}
+          {/* pop-up da lista de desejos */}
           {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null}
         </div>
 
@@ -302,7 +303,7 @@ const Header = ({ activeHeading }) => {
               <div className={`${styles.button} ml-4 !rounded-[4px]`}>
                 <Link to="/shop-create">
                   <h1 className="text-[#fff] flex items-center">
-                  Torne-se vendedor <IoIosArrowForward className="ml-1" />
+                    Torne-se vendedor <IoIosArrowForward className="ml-1" />
                   </h1>
                 </Link>
               </div>

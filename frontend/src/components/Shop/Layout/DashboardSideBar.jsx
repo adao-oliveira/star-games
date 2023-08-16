@@ -20,9 +20,8 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 1 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 1 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 1 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
             Dashboard
           </h5>
@@ -36,11 +35,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 2 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 2 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 2 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            All Orders
+            Todos os pedidos
           </h5>
         </Link>
       </div>
@@ -49,11 +47,10 @@ const DashboardSideBar = ({ active }) => {
         <Link to="/dashboard-products" className="w-full flex items-center">
           <FiPackage size={30} color={`${active === 3 ? "crimson" : "#555"}`} />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 3 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 3 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            All Products
+            Todos os produtos
           </h5>
         </Link>
       </div>
@@ -68,11 +65,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 4 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 4 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 4 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            Create Product
+            Criar produto
           </h5>
         </Link>
       </div>
@@ -84,11 +80,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 5 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 5 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 5 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            All Events
+            Todos os eventos
           </h5>
         </Link>
       </div>
@@ -100,11 +95,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 6 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 6 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 6 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            Create Event
+            Criar Evento
           </h5>
         </Link>
       </div>
@@ -119,11 +113,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 7 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 7 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 7 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            Withdraw Money
+            Retirar dinheiro
           </h5>
         </Link>
       </div>
@@ -135,9 +128,8 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 8 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 8 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 8 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
             Shop Inbox
           </h5>
@@ -151,11 +143,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 9 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 9 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 9 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            Discount Codes
+            Cupons de desconto
           </h5>
         </Link>
       </div>
@@ -167,11 +158,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 10 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 10 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 10 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            Refunds
+            Reembolsos
           </h5>
         </Link>
       </div>
@@ -183,11 +173,10 @@ const DashboardSideBar = ({ active }) => {
             color={`${active === 11 ? "crimson" : "#555"}`}
           />
           <h5
-            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 11 ? "text-[crimson]" : "text-[#555]"
-            }`}
+            className={`hidden 800px:block pl-2 text-[18px] font-[400] ${active === 11 ? "text-[crimson]" : "text-[#555]"
+              }`}
           >
-            Settings
+            Configurações
           </h5>
         </Link>
       </div>

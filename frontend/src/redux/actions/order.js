@@ -1,7 +1,7 @@
 import axios from "axios";
 import { server } from "../../server";
 
-// get all orders of user
+// obter todos os pedidos do usuário
 export const getAllOrdersOfUser = (userId) => async (dispatch) => {
   try {
     dispatch({
@@ -24,7 +24,7 @@ export const getAllOrdersOfUser = (userId) => async (dispatch) => {
   }
 };
 
-// get all orders of seller
+// obter todos os pedidos do vendedor
 export const getAllOrdersOfShop = (shopId) => async (dispatch) => {
   try {
     dispatch({
@@ -47,7 +47,7 @@ export const getAllOrdersOfShop = (shopId) => async (dispatch) => {
   }
 };
 
-// get all orders of Admin
+// obter todos os pedidos de Admin
 export const getAllOrdersOfAdmin = () => async (dispatch) => {
   try {
     dispatch({

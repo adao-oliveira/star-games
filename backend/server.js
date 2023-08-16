@@ -4,8 +4,8 @@ const cloudinary = require("cloudinary");
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
-  console.log(`Error: ${err.message}`);
-  console.log(`shutting down the server for handling uncaught exception`);
+  console.log(`Erro: ${err.message}`);
+  console.log(`desligando o servidor para lidar com exceção não capturada`);
 });
 
 // config
@@ -28,14 +28,14 @@ cloudinary.config({
 // create server
 const server = app.listen(process.env.PORT, () => {
   console.log(
-    `Server is running on http://localhost:${process.env.PORT}`
+    `O servidor está em execução http://localhost:${process.env.PORT}`
   );
 });
 
 // unhandled promise rejection
 process.on("unhandledRejection", (err) => {
-  console.log(`Shutting down the server for ${err.message}`);
-  console.log(`shutting down the server for unhandle promise rejection`);
+  console.log(`Desligando o servidor para ${err.message}`);
+  console.log(`desligando o servidor para resolver a rejeição da promise`);
 
   server.close(() => {
     process.exit(1);

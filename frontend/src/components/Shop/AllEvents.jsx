@@ -25,7 +25,7 @@ const AllEvents = () => {
   }
 
   const columns = [
-    { field: "id", headerName: "Product Id", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "ID do produto", minWidth: 150, flex: 0.7 },
     {
       field: "name",
       headerName: "Name",
@@ -85,7 +85,7 @@ const AllEvents = () => {
         return (
           <>
             <Button
-            onClick={() => handleDelete(params.id)}
+              onClick={() => handleDelete(params.id)}
             >
               <AiOutlineDelete size={20} />
             </Button>
@@ -98,7 +98,7 @@ const AllEvents = () => {
   const row = [];
 
   events &&
-  events.forEach((item) => {
+    events.forEach((item) => {
       row.push({
         id: item._id,
         name: item.name,

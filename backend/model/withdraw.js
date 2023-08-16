@@ -11,13 +11,13 @@ const withdrawSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: "Processing",
+    default: "Em processamento",
   },
   createdAt: {
     type: Date,
     default: Date.now(),
   },
-  updatedAt:{
+  updatedAt: {
     type: Date,
   }
 });

@@ -13,7 +13,7 @@ const ENDPOINT = "https://socket-ecommerce-tu68.onrender.com/";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 const UserInbox = () => {
-  const { user,loading } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
   const [conversations, setConversations] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [currentChat, setCurrentChat] = useState();
@@ -77,7 +77,7 @@ const UserInbox = () => {
     return online ? true : false;
   };
 
-  // get messages
+  // receber mensagens
   useEffect(() => {
     const getMessage = async () => {
       try {
@@ -92,7 +92,7 @@ const UserInbox = () => {
     getMessage();
   }, [currentChat]);
 
-  // create new message
+  // criar nova mensagem
   const sendMessageHandler = async (e) => {
     e.preventDefault();
 
@@ -213,7 +213,7 @@ const UserInbox = () => {
         <>
           <Header />
           <h1 className="text-center text-[30px] py-3 font-Poppins">
-            All Messages
+            Todas as mensagens
           </h1>
           {/* All messages list */}
           {conversations &&
@@ -289,9 +289,8 @@ const MessageList = ({
 
   return (
     <div
-      className={`w-full flex p-3 px-3 ${
-        active === index ? "bg-[#00000010]" : "bg-transparent"
-      }  cursor-pointer`}
+      className={`w-full flex p-3 px-3 ${active === index ? "bg-[#00000010]" : "bg-transparent"
+        }  cursor-pointer`}
       onClick={(e) =>
         setActive(index) ||
         handleClick(data._id) ||
@@ -316,7 +315,7 @@ const MessageList = ({
         <h1 className="text-[18px]">{user?.name}</h1>
         <p className="text-[16px] text-[#000c]">
           {!loading && data?.lastMessageId !== userData?._id
-            ? "You:"
+            ? "Você:"
             : userData?.name.split(" ")[0] + ": "}{" "}
           {data?.lastMessage}
         </p>
@@ -339,7 +338,7 @@ const SellerInbox = ({
 }) => {
   return (
     <div className="w-[full] min-h-full flex flex-col justify-between p-5">
-      {/* message header */}
+      {/* cabeçalho da mensagem */}
       <div className="w-full flex p-3 items-center justify-between bg-slate-200">
         <div className="flex">
           <img
@@ -349,7 +348,7 @@ const SellerInbox = ({
           />
           <div className="pl-3">
             <h1 className="text-[18px] font-[600]">{userData?.name}</h1>
-            <h1>{activeStatus ? "Active Now" : ""}</h1>
+            <h1>{activeStatus ? "Ativo agora" : ""}</h1>
           </div>
         </div>
         <AiOutlineArrowRight
@@ -359,14 +358,13 @@ const SellerInbox = ({
         />
       </div>
 
-      {/* messages */}
+      {/* mensagens */}
       <div className="px-3 h-[75vh] py-3 overflow-y-scroll">
         {messages &&
           messages.map((item, index) => (
             <div
-              className={`flex w-full my-2 ${
-                item.sender === sellerId ? "justify-end" : "justify-start"
-              }`}
+              className={`flex w-full my-2 ${item.sender === sellerId ? "justify-end" : "justify-start"
+                }`}
               ref={scrollRef}
             >
               {item.sender !== sellerId && (
@@ -385,9 +383,8 @@ const SellerInbox = ({
               {item.text !== "" && (
                 <div>
                   <div
-                    className={`w-max p-2 rounded ${
-                      item.sender === sellerId ? "bg-[#000]" : "bg-[#38c776]"
-                    } text-[#fff] h-min`}
+                    className={`w-max p-2 rounded ${item.sender === sellerId ? "bg-[#000]" : "bg-[#38c776]"
+                      } text-[#fff] h-min`}
                   >
                     <p>{item.text}</p>
                   </div>
@@ -401,7 +398,7 @@ const SellerInbox = ({
           ))}
       </div>
 
-      {/* send message input */}
+      {/* enviar entrada de mensagem */}
       <form
         aria-required={true}
         className="p-3 relative w-full flex justify-between items-center"
@@ -423,7 +420,7 @@ const SellerInbox = ({
           <input
             type="text"
             required
-            placeholder="Enter your message..."
+            placeholder="Digite sua mensagem..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             className={`${styles.input}`}

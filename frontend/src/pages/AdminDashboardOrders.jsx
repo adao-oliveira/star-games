@@ -17,7 +17,7 @@ const AdminDashboardOrders = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "ID do pedido", minWidth: 150, flex: 0.7 },
 
     {
       field: "status",
@@ -25,14 +25,14 @@ const AdminDashboardOrders = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
+        return params.getValue(params.id, "status") === "Entregue"
           ? "greenColor"
           : "redColor";
       },
     },
     {
       field: "itemsQty",
-      headerName: "Items Qty",
+      headerName: "Qtde Itens",
       type: "number",
       minWidth: 130,
       flex: 0.7,
@@ -46,12 +46,12 @@ const AdminDashboardOrders = () => {
       flex: 0.8,
     },
     {
-        field: "createdAt",
-        headerName: "Order Date",
-        type: "number",
-        minWidth: 130,
-        flex: 0.8,
-      },
+      field: "createdAt",
+      headerName: "Data do pedido",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
   ];
 
   const row = [];
@@ -62,7 +62,7 @@ const AdminDashboardOrders = () => {
         itemsQty: item?.cart?.reduce((acc, item) => acc + item.qty, 0),
         total: item?.totalPrice + " $",
         status: item?.status,
-        createdAt: item?.createdAt.slice(0,10),
+        createdAt: item?.createdAt.slice(0, 10),
       });
     });
   return (

@@ -1,4 +1,4 @@
-// add to cart
+// Adicionar ao carrinho
 export const addTocart = (data) => async (dispatch, getState) => {
   dispatch({
     type: "addToCart",
@@ -9,7 +9,7 @@ export const addTocart = (data) => async (dispatch, getState) => {
   return data;
 };
 
-// remove from cart
+// Remover do carrinho
 export const removeFromCart = (data) => async (dispatch, getState) => {
   dispatch({
     type: "removeFromCart",

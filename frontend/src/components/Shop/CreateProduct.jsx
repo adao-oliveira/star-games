@@ -26,7 +26,7 @@ const CreateProduct = () => {
       toast.error(error);
     }
     if (success) {
-      toast.success("Product created successfully!");
+      toast.success("Produto criado com sucesso!");
       navigate("/dashboard");
       window.location.reload();
     }
@@ -82,13 +82,13 @@ const CreateProduct = () => {
 
   return (
     <div className="w-[90%] 800px:w-[50%] bg-white  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
-      <h5 className="text-[30px] font-Poppins text-center">Create Product</h5>
-      {/* create product form */}
+      <h5 className="text-[30px] font-Poppins text-center">Criar produto</h5>
+      {/* Criar produto form */}
       <form onSubmit={handleSubmit}>
         <br />
         <div>
           <label className="pb-2">
-            Name <span className="text-red-500">*</span>
+            Nome <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -96,13 +96,13 @@ const CreateProduct = () => {
             value={name}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setName(e.target.value)}
-            placeholder="Enter your product name..."
+            placeholder="Digite o nome do seu produto..."
           />
         </div>
         <br />
         <div>
           <label className="pb-2">
-            Description <span className="text-red-500">*</span>
+            Descrição <span className="text-red-500">*</span>
           </label>
           <textarea
             cols="30"
@@ -113,20 +113,20 @@ const CreateProduct = () => {
             value={description}
             className="mt-2 appearance-none block w-full pt-2 px-3 border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter your product description..."
+            placeholder="Insira a descrição do seu produto..."
           ></textarea>
         </div>
         <br />
         <div>
           <label className="pb-2">
-            Category <span className="text-red-500">*</span>
+            Categoria <span className="text-red-500">*</span>
           </label>
           <select
             className="w-full mt-2 border h-[35px] rounded-[5px]"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="Choose a category">Choose a category</option>
+            <option value="Escolha uma categoria">Escolha uma categoria</option>
             {categoriesData &&
               categoriesData.map((i) => (
                 <option value={i.title} key={i.title}>
@@ -144,25 +144,25 @@ const CreateProduct = () => {
             value={tags}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setTags(e.target.value)}
-            placeholder="Enter your product tags..."
+            placeholder="Insira as tags do seu produto..."
           />
         </div>
         <br />
         <div>
-          <label className="pb-2">Original Price</label>
+          <label className="pb-2">Preço original</label>
           <input
             type="number"
             name="price"
             value={originalPrice}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setOriginalPrice(e.target.value)}
-            placeholder="Enter your product price..."
+            placeholder="Insira o preço do seu produto..."
           />
         </div>
         <br />
         <div>
           <label className="pb-2">
-            Price (With Discount) <span className="text-red-500">*</span>
+            Preço (com desconto) <span className="text-red-500">*</span>
           </label>
           <input
             type="number"
@@ -170,13 +170,13 @@ const CreateProduct = () => {
             value={discountPrice}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setDiscountPrice(e.target.value)}
-            placeholder="Enter your product price with discount..."
+            placeholder="Insira o preço do seu produto com desconto..."
           />
         </div>
         <br />
         <div>
           <label className="pb-2">
-            Product Stock <span className="text-red-500">*</span>
+            Estoque de produtos <span className="text-red-500">*</span>
           </label>
           <input
             type="number"
@@ -184,13 +184,13 @@ const CreateProduct = () => {
             value={stock}
             className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             onChange={(e) => setStock(e.target.value)}
-            placeholder="Enter your product stock..."
+            placeholder="Insira seu estoque de produtos..."
           />
         </div>
         <br />
         <div>
           <label className="pb-2">
-            Upload Images <span className="text-red-500">*</span>
+            Enviar imagens <span className="text-red-500">*</span>
           </label>
           <input
             type="file"
@@ -218,7 +218,7 @@ const CreateProduct = () => {
           <div>
             <input
               type="submit"
-              value="Create"
+              value="Criar"
               className="mt-2 cursor-pointer appearance-none text-center block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>

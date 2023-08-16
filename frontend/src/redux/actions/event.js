@@ -1,7 +1,7 @@
 import axios from "axios";
 import { server } from "../../server";
 
-// create event
+// Criar Evento
 export const createevent = (data) => async (dispatch) => {
   try {
     dispatch({
@@ -21,7 +21,7 @@ export const createevent = (data) => async (dispatch) => {
   }
 };
 
-// get all events of a shop
+// obter todos os eventos de uma loja
 export const getAllEventsShop = (id) => async (dispatch) => {
   try {
     dispatch({
@@ -41,7 +41,7 @@ export const getAllEventsShop = (id) => async (dispatch) => {
   }
 };
 
-// delete event of a shop
+// excluir evento de uma loja
 export const deleteEvent = (id) => async (dispatch) => {
   try {
     dispatch({
@@ -67,7 +67,7 @@ export const deleteEvent = (id) => async (dispatch) => {
   }
 };
 
-// get all events
+// obter todos os eventos
 export const getAllEvents = () => async (dispatch) => {
   try {
     dispatch({

@@ -6,7 +6,7 @@ const { isSeller } = require("../middleware/auth");
 const CoupounCode = require("../model/coupounCode");
 const router = express.Router();
 
-// create coupoun code
+// criar código de cupom
 router.post(
   "/create-coupon-code",
   isSeller,
@@ -17,7 +17,7 @@ router.post(
       });
 
       if (isCoupounCodeExists.length !== 0) {
-        return next(new ErrorHandler("Coupoun code already exists!", 400));
+        return next(new ErrorHandler("O código do cupom já existe!", 400));
       }
 
       const coupounCode = await CoupounCode.create(req.body);
@@ -32,7 +32,7 @@ router.post(
   })
 );
 
-// get all coupons of a shop
+// obter todos os cupons de uma loja
 router.get(
   "/get-coupon/:id",
   isSeller,
@@ -49,7 +49,7 @@ router.get(
   })
 );
 
-// delete coupoun code of a shop
+// excluir código de cupom de uma loja
 router.delete(
   "/delete-coupon/:id",
   isSeller,
@@ -58,11 +58,11 @@ router.delete(
       const couponCode = await CoupounCode.findByIdAndDelete(req.params.id);
 
       if (!couponCode) {
-        return next(new ErrorHandler("Coupon code dosen't exists!", 400));
+        return next(new ErrorHandler("O código do cupom não existe!", 400));
       }
       res.status(201).json({
         success: true,
-        message: "Coupon code deleted successfully!",
+        message: "Código do cupom excluído com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error, 400));
@@ -70,7 +70,7 @@ router.delete(
   })
 );
 
-// get coupon code value by its name
+// obtenha o valor do código do cupom pelo nome
 router.get(
   "/get-coupon-value/:name",
   catchAsyncErrors(async (req, res, next) => {

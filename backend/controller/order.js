@@ -7,14 +7,14 @@ const Order = require("../model/order");
 const Shop = require("../model/shop");
 const Product = require("../model/product");
 
-// create new order
+// criar novo pedido
 router.post(
   "/create-order",
   catchAsyncErrors(async (req, res, next) => {
     try {
       const { cart, shippingAddress, user, totalPrice, paymentInfo } = req.body;
 
-      //   group cart items by shopId
+      //   agrupar itens do carrinho por shopId
       const shopItemsMap = new Map();
 
       for (const item of cart) {
@@ -25,7 +25,7 @@ router.post(
         shopItemsMap.get(shopId).push(item);
       }
 
-      // create an order for each shop
+      // criar um pedido para cada loja
       const orders = [];
 
       for (const [shopId, items] of shopItemsMap) {
@@ -49,7 +49,7 @@ router.post(
   })
 );
 
-// get all orders of user
+// obter todos os pedidos do usuário
 router.get(
   "/get-all-orders/:userId",
   catchAsyncErrors(async (req, res, next) => {
@@ -68,7 +68,7 @@ router.get(
   })
 );
 
-// get all orders of seller
+// obter todos os pedidos do vendedor
 router.get(
   "/get-seller-all-orders/:shopId",
   catchAsyncErrors(async (req, res, next) => {
@@ -89,7 +89,7 @@ router.get(
   })
 );
 
-// update order status for seller
+// atualizar o status do pedido para o vendedor
 router.put(
   "/update-order-status/:id",
   isSeller,
@@ -98,9 +98,9 @@ router.put(
       const order = await Order.findById(req.params.id);
 
       if (!order) {
-        return next(new ErrorHandler("Order not found with this id", 400));
+        return next(new ErrorHandler("Pedido não encontrado com este id", 400));
       }
-      if (req.body.status === "Transferred to delivery partner") {
+      if (req.body.status === "Transferido para parceiro de entrega") {
         order.cart.forEach(async (o) => {
           await updateOrder(o._id, o.qty);
         });
@@ -108,9 +108,9 @@ router.put(
 
       order.status = req.body.status;
 
-      if (req.body.status === "Delivered") {
+      if (req.body.status === "Entregue") {
         order.deliveredAt = Date.now();
-        order.paymentInfo.status = "Succeeded";
+        order.paymentInfo.status = "Sucesso";
         const serviceCharge = order.totalPrice * .10;
         await updateSellerInfo(order.totalPrice - serviceCharge);
       }
@@ -133,7 +133,7 @@ router.put(
 
       async function updateSellerInfo(amount) {
         const seller = await Shop.findById(req.seller.id);
-        
+
         seller.availableBalance = amount;
 
         await seller.save();
@@ -144,7 +144,7 @@ router.put(
   })
 );
 
-// give a refund ----- user
+// dar um reembolso ----- usuário
 router.put(
   "/order-refund/:id",
   catchAsyncErrors(async (req, res, next) => {
@@ -152,7 +152,7 @@ router.put(
       const order = await Order.findById(req.params.id);
 
       if (!order) {
-        return next(new ErrorHandler("Order not found with this id", 400));
+        return next(new ErrorHandler("Pedido não encontrado com este id", 400));
       }
 
       order.status = req.body.status;
@@ -162,7 +162,7 @@ router.put(
       res.status(200).json({
         success: true,
         order,
-        message: "Order Refund Request successfully!",
+        message: "Solicitação de reembolso do pedido com sucesso!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -170,7 +170,7 @@ router.put(
   })
 );
 
-// accept the refund ---- seller
+// aceitar o reembolso ---- vendedor
 router.put(
   "/order-refund-success/:id",
   isSeller,
@@ -179,7 +179,7 @@ router.put(
       const order = await Order.findById(req.params.id);
 
       if (!order) {
-        return next(new ErrorHandler("Order not found with this id", 400));
+        return next(new ErrorHandler("Pedido não encontrado com este id", 400));
       }
 
       order.status = req.body.status;
@@ -188,10 +188,10 @@ router.put(
 
       res.status(200).json({
         success: true,
-        message: "Order Refund successfull!",
+        message: "Pedido Reembolso com sucesso!",
       });
 
-      if (req.body.status === "Refund Success") {
+      if (req.body.status === "Sucesso do reembolso") {
         order.cart.forEach(async (o) => {
           await updateOrder(o._id, o.qty);
         });
@@ -211,7 +211,7 @@ router.put(
   })
 );
 
-// all orders --- for admin
+// todos os pedidos --- para admin
 router.get(
   "/admin-all-orders",
   isAuthenticated,
